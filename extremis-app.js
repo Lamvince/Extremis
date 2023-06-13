@@ -43,10 +43,10 @@ app.use(express.urlencoded({
 const isHeroku = process.env.IS_HEROKU || false;
 //Since we have another git repository set up by Heroku, the information of the connection will not be shown here
 const connectionHeroku = {
-    host: "",
-    user: "",
-    password: "",
-    database: ""
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 };
 
 const connectionLocal = {
