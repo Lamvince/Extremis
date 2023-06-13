@@ -15,7 +15,6 @@ const {
     JSDOM
 } = require('jsdom');
 const multer = require("multer");
-let port = process.env.PORT || 8000;
 
 app.use("/assets", express.static("./public/assets"));
 app.use("/css", express.static("./public/css"));
@@ -57,13 +56,15 @@ const connectionLocal = {
 };
 
 if (isHeroku) {
-    var connection = mysql.createPool(connectionHeroku);    
+    var connection = mysql.createPool(connectionHeroku);
+    let port = process.env.PORT || 8000;
     app.listen(port, function () {});
     const {
         uploadFile
     } = require('./s3');
 } else {
-    var connection = mysql.createPool(connectionHeroku);
+    var connection = mysql.createPool(connectionLocal);
+    let port = 8000
     app.listen(port, function () {});
 }
 
