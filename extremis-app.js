@@ -63,7 +63,7 @@ if (isHeroku) {
         uploadFile
     } = require('./s3');
 } else {
-    var connection = mysql.createPool(connectionLocal);
+    var connection = mysql.createPool(connectionHeroku);
     app.listen(port, function () {});
 }
 
